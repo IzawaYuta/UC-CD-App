@@ -38,6 +38,7 @@ struct HomeView: View {
                                 DefecationRecordAddView(addButton: { addRecord()
                                     showDefecationAddView = false
                                 })
+                                .presentationDetents([.height(250)])
                             }
                             
                             //                    }
