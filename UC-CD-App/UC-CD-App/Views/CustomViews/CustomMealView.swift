@@ -7,24 +7,25 @@
 
 import SwiftUI
 
-struct CustomMealView<Content: View>: View {
+struct CustomMealView: View {
     
     let title: String
     let time: Date
-    let content: Content
-    
-    init(title: String,
-         time: Date,
-         @ViewBuilder content: () -> Content) {
-        self.title = title
-        self.time = time
-        self.content = content()
-    }
+    let items: [String]
+    let color: Color
+
+//    init(title: String,
+//         time: Date,
+//         @ViewBuilder content: () -> Content) {
+//        self.title = title
+//        self.time = time
+//        self.content = content()
+//    }
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.gray.opacity(0.5))
+            RoundedRectangle(cornerRadius: 15)
+                .fill(color.opacity(0.2))
                 .frame(height: 150)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 10)
@@ -39,23 +40,45 @@ struct CustomMealView<Content: View>: View {
                 .padding(.horizontal, 30)
 //                .padding(.top, 50)
                 
-                ZStack {
-                    RoundedRectangle(cornerRadius: 13)
+                ZStack(alignment: .topLeading) {
+                    RoundedRectangle(cornerRadius: 11)
                         .fill(Color.white)
-                        .frame(height: 110)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 20)
 //                        .padding(.bottom, 60)
                     
-                    content
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 4) {
+                            ForEach(items, id: \.self) { item in
+                                Text("・" + breakEverySix(item))
+                                    .font(.system(size: 13))
+                                    .foregroundColor(.black.opacity(0.8))
+                            }
+                        }
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 5)
+                    }
                 }
+                .frame(height: 110)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 18)
             }
         }
+    }
+    
+    // 7文字ごとに改行
+    func breakEverySix(_ text: String) -> String {
+        var result = ""
+        for (index, char) in text.enumerated() {
+            if index != 0 && index % 7 == 0 {
+                result.append("\n")
+            }
+            result.append(char)
+        }
+        return result
     }
 }
 
 #Preview {
-    CustomMealView(title: "朝食", time: Date(), content: {})
+    CustomMealView(title: "朝食", time: Date(), items: ["あああ"], color: .orange.opacity(0.1))
         .background(Color.white)
         .ignoresSafeArea()
 }
