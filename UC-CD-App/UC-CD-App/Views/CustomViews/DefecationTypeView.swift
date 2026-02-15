@@ -7,17 +7,28 @@
 
 import SwiftUI
 
-struct DefecationTypeView: View {
+struct DefecationTypeView<Content: View>: View {
     
     let color: Color
+    let content: Content
+    
+    init(color: Color,
+         @ViewBuilder content: () -> Content) {
+        self.color = color
+        self.content = content()
+    }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 10)
-            .fill(color)
-            .frame(width: 100, height: 50)
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(color)
+                .frame(width: 100, height: 30)
+            
+            content
+        }
     }
 }
 
 #Preview {
-    DefecationTypeView(color: .orange)
+    DefecationTypeView(color: .orange, content: {})
 }
