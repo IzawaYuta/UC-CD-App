@@ -90,6 +90,94 @@ struct HomeView: View {
                     }
                 }
             }
+            ZStack {
+                CustomRoundedRectangleView(height: 200, title: "服用記録") {
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            // 1つ目のイベント
+                            HStack(alignment: .top, spacing: 12) {
+                                // 左側: タイムライン
+                                VStack(spacing: 0) {
+                                    Circle()
+                                        .frame(width: 20, height: 20)
+                                    
+                                    Rectangle()
+                                        .frame(width: 1.5)
+                                        .frame(height: 80)
+                                }
+                                
+                                // 右側: コンテンツ
+                                HStack(alignment: .top, spacing: 30) {
+                                    Text("8:00")
+                                        .font(.headline)
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        HStack {
+                                            Text("ペンタサ")
+                                            Spacer()
+                                            Text("2錠")
+                                        }
+                                        HStack {
+                                            Text("アサコール")
+                                            Spacer()
+                                            Text("2錠")
+                                        }
+                                        HStack {
+                                            Text("コレチメント")
+                                            Spacer()
+                                            Text("1錠")
+                                        }
+                                    }
+                                }
+                                
+                                Spacer()
+                            }
+                            
+                            // 2つ目のイベント
+                            HStack(alignment: .top, spacing: 12) {
+                                // 左側: タイムライン
+                                VStack(spacing: 0) {
+                                    Circle()
+                                        .frame(width: 20, height: 20)
+                                    
+                                    Rectangle()
+                                        .frame(width: 1.5)
+                                        .frame(height: 80)
+                                }
+                                
+                                // 右側: コンテンツ
+                                HStack(alignment: .top, spacing: 30) {
+                                    Text("12:00")
+                                        .font(.headline)
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        HStack {
+                                            Text("ペンタサ")
+                                            Spacer()
+                                            Text("2錠")
+                                        }
+                                        HStack {
+                                            Text("アサコール")
+                                            Spacer()
+                                            Text("2錠")
+                                        }
+                                        HStack {
+                                            Text("コレチメント")
+                                            Spacer()
+                                            Text("1錠")
+                                        }
+                                    }
+                                }
+                                
+                                Spacer()
+                            }
+                            
+                        }
+                        .padding()
+                    }
+                }
+            }
+            
             Spacer()
         }
         .padding(.vertical)
