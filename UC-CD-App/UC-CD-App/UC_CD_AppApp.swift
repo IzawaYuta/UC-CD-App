@@ -25,8 +25,16 @@ struct UC_CD_AppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
-        .modelContainer(sharedModelContainer)
+//        .modelContainer(sharedModelContainer)
+        .modelContainer(
+            for: [
+                DailyRecordModel.self,
+                DefecationRecordModel.self,
+                MealRecordModel.self,
+                HospitalVisitModel.self
+            ]
+        )
     }
 }
