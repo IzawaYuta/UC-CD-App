@@ -2,7 +2,8 @@
 import SwiftUI
 
 struct WeekCalendarView: View {
-    @State private var selectedDate: Date = Date()
+//    @State private var selectedDate: Date = Date()
+    @Binding var selectedDate: Date
     @State private var weekOffset: Int = 0
     
     private let calendar = Calendar.current
@@ -82,5 +83,5 @@ struct WeekCalendarView: View {
 }
 
 #Preview {
-    WeekCalendarView()
+    WeekCalendarView(selectedDate: .constant(Date()))
 }

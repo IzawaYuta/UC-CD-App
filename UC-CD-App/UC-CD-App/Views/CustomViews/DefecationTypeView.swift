@@ -1,20 +1,18 @@
-//
-//  DefecationTypeView.swift
-//  UC-CD-App
-//
-//  Created by Engineer MacBook Air on 2026/02/15.
-//
 
 import SwiftUI
 
 struct DefecationTypeView<Content: View>: View {
     
     let color: Color
+    let height: CGFloat
+    let width: CGFloat
     let content: Content
     
-    init(color: Color,
+    init(color: Color, height: CGFloat, width: CGFloat,
          @ViewBuilder content: () -> Content) {
         self.color = color
+        self.height = height
+        self.width = width
         self.content = content()
     }
     
@@ -22,7 +20,7 @@ struct DefecationTypeView<Content: View>: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(color)
-                .frame(width: 100, height: 30)
+                .frame(width: width, height: height)
             
             content
         }
@@ -30,5 +28,5 @@ struct DefecationTypeView<Content: View>: View {
 }
 
 #Preview {
-    DefecationTypeView(color: .orange, content: {})
+    DefecationTypeView(color: .orange, height: 50, width: 300, content: {})
 }
