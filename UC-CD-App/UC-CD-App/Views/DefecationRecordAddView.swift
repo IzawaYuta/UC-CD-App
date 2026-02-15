@@ -73,7 +73,7 @@ struct DefecationRecordAddView: View {
                     Button(action: {
                         normal.toggle()
                     }) {
-                        DefecationTypeView(color: normal ? .green.opacity(0.5) : .gray.opacity(0.15), height: 50, width: 100) {
+                        DefecationTypeView(color: normal ? .green.opacity(0.5) : .gray.opacity(0.15), height: 50) {
                             Text("普通")
                         }
                     }
@@ -82,7 +82,7 @@ struct DefecationRecordAddView: View {
                     Button(action: {
                         soft.toggle()
                     }) {
-                        DefecationTypeView(color: soft ? .yellow.opacity(0.5) : .gray.opacity(0.15), height: 50, width: 100) {
+                        DefecationTypeView(color: soft ? .yellow.opacity(0.5) : .gray.opacity(0.15), height: 50) {
                             Text("軟便")
                         }
                     }
@@ -91,7 +91,7 @@ struct DefecationRecordAddView: View {
                     Button(action: {
                         constipation.toggle()
                     }) {
-                        DefecationTypeView(color: constipation ? .gray.opacity(0.5) : .gray.opacity(0.15), height: 50, width: 100) {
+                        DefecationTypeView(color: constipation ? .gray.opacity(0.5) : .gray.opacity(0.15), height: 50) {
                             Text("便秘")
                         }
                     }
@@ -101,7 +101,7 @@ struct DefecationRecordAddView: View {
                     Button(action: {
                         hard.toggle()
                     }) {
-                        DefecationTypeView(color: hard ? .orange.opacity(0.5) : .gray.opacity(0.15), height: 50, width: 100) {
+                        DefecationTypeView(color: hard ? .orange.opacity(0.5) : .gray.opacity(0.15), height: 50) {
                             Text("硬便")
                         }
                     }
@@ -110,7 +110,7 @@ struct DefecationRecordAddView: View {
                     Button(action: {
                         diarrhea.toggle()
                     }) {
-                        DefecationTypeView(color: diarrhea ? .purple.opacity(0.5) : .gray.opacity(0.15), height: 50, width: 100) {
+                        DefecationTypeView(color: diarrhea ? .purple.opacity(0.5) : .gray.opacity(0.15), height: 50) {
                             Text("下痢")
                         }
                     }
@@ -119,7 +119,7 @@ struct DefecationRecordAddView: View {
                     Button(action: {
                         bloody.toggle()
                     }) {
-                        DefecationTypeView(color: bloody ? .red.opacity(0.5) : .gray.opacity(0.15), height: 50, width: 100) {
+                        DefecationTypeView(color: bloody ? .red.opacity(0.5) : .gray.opacity(0.15), height: 50) {
                             Text("血便")
                         }
                     }

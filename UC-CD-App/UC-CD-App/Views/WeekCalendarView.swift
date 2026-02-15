@@ -57,6 +57,7 @@ struct WeekCalendarView: View {
             }
         }
         .frame(maxWidth: .infinity)
+        .padding(.horizontal, 5)
     }
     
     private func dayCell(for date: Date) -> some View {
@@ -70,7 +71,8 @@ struct WeekCalendarView: View {
             Text(date.formatted(.dateTime.day()))
                 .font(.headline)
         }
-        .frame(width: 43, height: 60)
+        .frame(/*width: 43, */height: 60)
+        .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .fill(isSelected ? Color.gray : (isToday ? Color.gray.opacity(0.3) : Color.clear))

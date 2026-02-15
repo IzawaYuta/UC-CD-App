@@ -55,32 +55,35 @@ struct HomeView: View {
                             .padding(.horizontal, 25)
                         
                         VStack(spacing: 15) {
-                            HStack(spacing: 20) {
-                                DefecationTypeView(color: .green.opacity(0.5), height: 30, width: 100) {
+                            HStack {
+                                DefecationTypeView(color: .green.opacity(0.5), height: 30) {
                                     Text("普通 × \(count(of: .normal))")
                                 }
                                 
-                                DefecationTypeView(color: .yellow.opacity(0.5), height: 30, width: 100) {
+                                DefecationTypeView(color: .yellow.opacity(0.5), height: 30) {
                                     Text("軟便 × \(count(of: .soft))")
                                 }
                                 
-                                DefecationTypeView(color: .gray.opacity(0.5), height: 30, width: 100) {
+                                DefecationTypeView(color: .gray.opacity(0.5), height: 30) {
                                     Text("便秘 × \(count(of: .constipation))")
                                 }
                             }
-                            HStack(spacing: 20) {
-                                DefecationTypeView(color: .orange.opacity(0.5), height: 30, width: 100) {
+                            .padding(.horizontal)
+                            
+                            HStack {
+                                DefecationTypeView(color: .orange.opacity(0.5), height: 30) {
                                     Text("硬便 × \(count(of: .hard))")
                                 }
                                 
-                                DefecationTypeView(color: .purple.opacity(0.5), height: 30, width: 100) {
+                                DefecationTypeView(color: .purple.opacity(0.5), height: 30) {
                                     Text("下痢 × \(count(of: .diarrhea))")
                                 }
                                 
-                                DefecationTypeView(color: .red.opacity(0.5), height: 30, width: 100) {
+                                DefecationTypeView(color: .red.opacity(0.5), height: 30) {
                                     Text("血便 × \(count(of: .bloody))")
                                 }
                             }
+                            .padding(.horizontal)
                         }
                         //                        .frame(height: 120)
                         //                        .padding(.bottom, 1)
