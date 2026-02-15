@@ -8,6 +8,7 @@ struct HomeView: View {
             Spacer()
         }
         .padding(.vertical)
+        .background(Color.gray.opacity(0.2))
     }
 }
 
