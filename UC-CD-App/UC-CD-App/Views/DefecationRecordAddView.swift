@@ -10,11 +10,13 @@ struct DefecationRecordAddView: View {
     @State private var constipation: Bool = false
     @State private var bloody: Bool = false
     
-    @State private var keepSelection: Bool = false
+//    @State private var keepSelection: Bool = false
     
 //    @State private var selectedItems: [DefecationType] = []
     
     @Binding var selectedItems: [DefecationType]
+    
+    @AppStorage("keepSelection") private var keepSelection: Bool = false
     
     var addButton : () -> Void
     
@@ -97,6 +99,8 @@ struct DefecationRecordAddView: View {
                     }
                     .buttonStyle(.plain)
                 }
+                .padding(.horizontal, 20)
+                
                 HStack(spacing: 20) {
                     Button(action: {
                         hard.toggle()
@@ -125,6 +129,27 @@ struct DefecationRecordAddView: View {
                     }
                     .buttonStyle(.plain)
                 }
+                .padding(.horizontal, 20)
+            }
+        }
+        .onAppear {
+            
+            if keepSelection {
+                normal = selectedItems.contains(.normal)
+                hard = selectedItems.contains(.hard)
+                soft = selectedItems.contains(.soft)
+                diarrhea = selectedItems.contains(.diarrhea)
+                constipation = selectedItems.contains(.constipation)
+                bloody = selectedItems.contains(.bloody)
+            } else {
+                normal = false
+                hard = false
+                soft = false
+                diarrhea = false
+                constipation = false
+                bloody = false
+                
+                selectedItems.removeAll()
             }
         }
     }
