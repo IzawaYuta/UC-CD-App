@@ -22,6 +22,12 @@ struct DefecationRecordAddView: View {
         VStack {
             Button(action: {
                 addButton()
+                normal = false
+                hard = false
+                soft = false
+                diarrhea = false
+                constipation = false
+                bloody = false
             }) {
                 Image(systemName: "plus")
             }
