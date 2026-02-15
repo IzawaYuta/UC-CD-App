@@ -12,13 +12,28 @@ struct DefecationRecordAddView: View {
     
     @State private var keepSelection: Bool = false
     
+//    @State private var selectedItems: [DefecationType] = []
+    
+    @Binding var selectedItems: [DefecationType]
+    
     var addButton : () -> Void
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
+                    
+                    selectedItems.removeAll()
+                    
+                    if normal { selectedItems.append(.normal) }
+                    if hard { selectedItems.append(.hard) }
+                    if soft { selectedItems.append(.soft) }
+                    if diarrhea { selectedItems.append(.diarrhea) }
+                    if constipation { selectedItems.append(.constipation) }
+                    if bloody { selectedItems.append(.bloody) }
+                    
                     addButton()
+                    
                     if !keepSelection {
                         normal = false
                         hard = false
@@ -27,6 +42,7 @@ struct DefecationRecordAddView: View {
                         constipation = false
                         bloody = false
                     }
+                    
                 }) {
                     Image(systemName: "plus")
                 }
@@ -115,5 +131,16 @@ struct DefecationRecordAddView: View {
 }
 
 #Preview {
-    DefecationRecordAddView(addButton: {})
+    PreviewWrapper()
+}
+
+struct PreviewWrapper: View {
+    @State private var selectedItems: [DefecationType] = []
+    
+    var body: some View {
+        DefecationRecordAddView(
+            selectedItems: $selectedItems,
+            addButton: {}
+        )
+    }
 }

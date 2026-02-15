@@ -21,13 +21,22 @@ class DailyRecordModel {
     }
 }
 
+enum DefecationType: String, Codable {
+    case normal
+    case hard
+    case soft
+    case diarrhea
+    case constipation
+    case bloody
+}
+
 @Model
 class DefecationRecordModel {
     
-    var type: String
+    var type: [DefecationType]
     var time: Date
     
-    init(type: String, time: Date) {
+    init(type: [DefecationType], time: Date) {
         self.type = type
         self.time = time
     }

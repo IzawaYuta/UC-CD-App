@@ -8,6 +8,7 @@ struct HomeView: View {
     @State private var showDefecationAddView: Bool = false
     @Environment(\.modelContext) private var modelContext
     @Query private var records: [DefecationRecordModel]
+    @State private var selectedItems: [DefecationType] = []
     
     var body: some View {
         VStack {
@@ -35,7 +36,7 @@ struct HomeView: View {
                             //                            .padding(.horizontal, 30)
                             .buttonStyle(.plain)
                             .sheet(isPresented: $showDefecationAddView) {
-                                DefecationRecordAddView(addButton: { addRecord()
+                                DefecationRecordAddView(selectedItems: $selectedItems, addButton: { addRecord(type: selectedItems)
                                     showDefecationAddView = false
                                 })
                                 .presentationDetents([.height(250)])
@@ -56,24 +57,28 @@ struct HomeView: View {
                         VStack(spacing: 15) {
                             HStack(spacing: 20) {
                                 DefecationTypeView(color: .green.opacity(0.5), height: 30, width: 100) {
-                                    Text("普通 × 2")
+                                    Text("普通 × \(count(of: .normal))")
                                 }
+                                
                                 DefecationTypeView(color: .yellow.opacity(0.5), height: 30, width: 100) {
-                                    Text("軟便 × 2")
+                                    Text("軟便 × \(count(of: .soft))")
                                 }
+                                
                                 DefecationTypeView(color: .gray.opacity(0.5), height: 30, width: 100) {
-                                    Text("便秘 × 2")
+                                    Text("便秘 × \(count(of: .constipation))")
                                 }
                             }
                             HStack(spacing: 20) {
                                 DefecationTypeView(color: .orange.opacity(0.5), height: 30, width: 100) {
-                                    Text("硬便 × 2")
+                                    Text("硬便 × \(count(of: .hard))")
                                 }
+                                
                                 DefecationTypeView(color: .purple.opacity(0.5), height: 30, width: 100) {
-                                    Text("下痢 × 2")
+                                    Text("下痢 × \(count(of: .diarrhea))")
                                 }
+                                
                                 DefecationTypeView(color: .red.opacity(0.5), height: 30, width: 100) {
-                                    Text("血便 × 2")
+                                    Text("血便 × \(count(of: .bloody))")
                                 }
                             }
                         }
@@ -98,8 +103,8 @@ struct HomeView: View {
         }.count
     }
     
-    private func addRecord() {
-        let newRecord = DefecationRecordModel(type: "normal", time: selectedDate)
+    private func addRecord(type: [DefecationType]) {
+        let newRecord = DefecationRecordModel(type: type, time: selectedDate)
         modelContext.insert(newRecord)
         do {
             try modelContext.save()
@@ -110,6 +115,20 @@ struct HomeView: View {
         }
 
     }
+    
+    private var todayRecords: [DefecationRecordModel] {
+        records.filter {
+            Calendar.current.isDate($0.time, inSameDayAs: selectedDate)
+        }
+    }
+
+    
+    private func count(of type: DefecationType) -> Int {
+        todayRecords.reduce(0) { result, record in
+            result + record.type.filter { $0 == type }.count
+        }
+    }
+
 }
 
 #Preview {
