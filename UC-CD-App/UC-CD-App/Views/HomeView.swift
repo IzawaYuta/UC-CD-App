@@ -5,6 +5,7 @@ import SwiftData
 struct HomeView: View {
     
     @State private var selectedDate: Date = Date()
+    @State private var showDefecationAddView: Bool = false
     @Environment(\.modelContext) private var modelContext
     @Query private var records: [DefecationRecordModel]
     
@@ -24,15 +25,7 @@ struct HomeView: View {
                             //                                .padding(.horizontal, 40)
                             
                             Button(action: {
-                                let newRecord = DefecationRecordModel(type: "normal", time: selectedDate)
-                                modelContext.insert(newRecord)
-                                do {
-                                    try modelContext.save()
-                                    print("Saved DefecationRecord")
-                                    print(newRecord)
-                                } catch {
-                                    print("Failed to save DefecationRecord: \(error)")
-                                }
+                                showDefecationAddView.toggle()
                             }) {
                                 Image(systemName: "plus")
                                     .font(.system(size: 30))
@@ -41,6 +34,11 @@ struct HomeView: View {
                             //                            .padding(.vertical, 25)
                             //                            .padding(.horizontal, 30)
                             .buttonStyle(.plain)
+                            .sheet(isPresented: $showDefecationAddView) {
+                                DefecationRecordAddView(addButton: { addRecord()
+                                    showDefecationAddView = false
+                                })
+                            }
                             
                             //                    }
                         }
@@ -97,6 +95,19 @@ struct HomeView: View {
         records.filter {
             Calendar.current.isDate($0.time, inSameDayAs: selectedDate)
         }.count
+    }
+    
+    private func addRecord() {
+        let newRecord = DefecationRecordModel(type: "normal", time: selectedDate)
+        modelContext.insert(newRecord)
+        do {
+            try modelContext.save()
+            print("Saved DefecationRecord")
+            print(newRecord)
+        } catch {
+            print("Failed to save DefecationRecord: \(error)")
+        }
+
     }
 }
 
