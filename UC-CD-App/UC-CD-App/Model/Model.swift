@@ -1,6 +1,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUICore
 
 //MARK: 日付
 @Model
@@ -73,6 +74,7 @@ enum TakingTiming: String, Codable {
 @Model
 class MedicineModel {
     
+    var image: Image
     var medicineName: String
     var dose: Int
     var timing: TakingTiming
