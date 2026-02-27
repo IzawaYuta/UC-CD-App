@@ -10,6 +10,7 @@ enum MedicineUnitInitializer {
         
         guard count == 0 else { return }
         
+        context.insert(MedicineUnitModel(name: "-", isDeletable: false))
         context.insert(MedicineUnitModel(name: "錠", isDeletable: false))
         context.insert(MedicineUnitModel(name: "個"))
         context.insert(MedicineUnitModel(name: "mg"))
