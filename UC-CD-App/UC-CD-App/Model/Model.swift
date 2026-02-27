@@ -2,6 +2,7 @@
 import Foundation
 import SwiftData
 
+//MARK: 日付
 @Model
 class DailyRecordModel {
     
@@ -21,6 +22,7 @@ class DailyRecordModel {
     }
 }
 
+//MARK: 便のタイプ
 enum DefecationType: String, Codable {
     case normal
     case hard
@@ -30,6 +32,7 @@ enum DefecationType: String, Codable {
     case bloody
 }
 
+//MARK: 排便記録
 @Model
 class DefecationRecordModel {
     
@@ -42,6 +45,7 @@ class DefecationRecordModel {
     }
 }
 
+//MARK: 食事記録
 @Model
 class MealRecordModel {
     
@@ -51,6 +55,38 @@ class MealRecordModel {
     init(name: String, time: Date) {
         self.name = name
         self.time = time
+    }
+}
+
+//MARK: 便のタイプ
+enum TakingTiming: String, Codable {
+    case wakeUp
+    case beforeMeals
+    case justBeforeMeals
+    case immediatelyAfterMeals
+    case afterMeal
+    case beforeBedtime
+    case temporaryClothes
+}
+
+//MARK: お薬記録
+@Model
+class MedicineModel {
+    
+    var medicineName: String
+    var dose: Int
+    var timing: TakingTiming
+    var time: [Date]
+    var stock: Int
+    var memo: String
+    
+    init(medicineName: String, dose: Int, timing: TakingTiming, time: [Date], stock: Int, memo: String) {
+        self.medicineName = medicineName
+        self.dose = dose
+        self.timing = timing
+        self.time = time
+        self.stock = stock
+        self.memo = memo
     }
 }
 
