@@ -74,21 +74,39 @@ enum TakingTiming: String, Codable {
 @Model
 class MedicineModel {
     
-    var image: Image
+//    var image: Image
     var medicineName: String
+    var unit: MedicineUnitModel
     var dose: Int
     var timing: TakingTiming
     var time: [Date]
     var stock: Int
     var memo: String
     
-    init(medicineName: String, dose: Int, timing: TakingTiming, time: [Date], stock: Int, memo: String) {
+    init(medicineName: String, unit: MedicineUnitModel, dose: Int, timing: TakingTiming, time: [Date], stock: Int, memo: String) {
         self.medicineName = medicineName
+        self.unit = unit
         self.dose = dose
         self.timing = timing
         self.time = time
         self.stock = stock
         self.memo = memo
+    }
+}
+
+//MARK: お薬の単位
+@Model
+final class MedicineUnitModel {
+    
+    var name: String
+    var isDeletable: Bool
+    
+    init(
+        name: String,
+        isDeletable: Bool = true,
+    ) {
+        self.name = name
+        self.isDeletable = isDeletable
     }
 }
 
