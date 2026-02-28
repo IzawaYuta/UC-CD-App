@@ -100,7 +100,7 @@ struct UC_CD_AppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            MainTabView()
                 .onAppear {
                     // アプリ起動時に初期データをチェック
                     initializeDefaultData()
