@@ -99,13 +99,16 @@ class MedicineModel {
 final class MedicineUnitModel {
     
     var name: String
+    var order: Int // 追加順序用
     var isDeletable: Bool
     
     init(
         name: String,
+        order: Int,
         isDeletable: Bool = true,
     ) {
         self.name = name
+        self.order = order
         self.isDeletable = isDeletable
     }
 }
