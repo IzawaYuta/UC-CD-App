@@ -9,10 +9,10 @@ struct MainTabView: View {
                     Label("ホーム", systemImage: "house.fill")
                 }
             
-            MedicineInfoView()
-                .tabItem {
-                    Label("記録", systemImage: "pencil")
-                }
+//            MedicineInfoView()
+//                .tabItem {
+//                    Label("記録", systemImage: "pencil")
+//                }
             
             MedicineListView()
                 .tabItem {
