@@ -10,10 +10,10 @@ enum MedicineUnitInitializer {
         
         guard count == 0 else { return }
         
-        context.insert(MedicineUnitModel(name: "-", isDeletable: false))
-        context.insert(MedicineUnitModel(name: "錠", isDeletable: false))
-        context.insert(MedicineUnitModel(name: "個"))
-        context.insert(MedicineUnitModel(name: "mg"))
+        context.insert(MedicineUnitModel(name: "-", order: 1, isDeletable: false))
+        context.insert(MedicineUnitModel(name: "錠", order: 2, isDeletable: false))
+        context.insert(MedicineUnitModel(name: "個", order: 3))
+        context.insert(MedicineUnitModel(name: "mg", order: 4))
         
         try context.save()
     }
