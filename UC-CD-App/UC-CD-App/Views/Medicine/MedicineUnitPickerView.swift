@@ -68,15 +68,16 @@ struct MedicineUnitPickerView: View {
     
     let context = container.mainContext
     
-    // 初期単位「錠」
     let tablet = MedicineUnitModel(
         name: "錠",
+        order: 2,
         isDeletable: false
     )
     
     context.insert(tablet)
-    context.insert(MedicineUnitModel(name: "個"))
-    context.insert(MedicineUnitModel(name: "mg"))
+    context.insert(MedicineUnitModel(name: "-", order: 1))
+    context.insert(MedicineUnitModel(name: "個", order: 3))
+    context.insert(MedicineUnitModel(name: "mg", order: 4))
     
     return MedicineUnitPickerView(
         selectedUnit: .constant(tablet)
